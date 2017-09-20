@@ -12,7 +12,9 @@
 @implementation NewsModel
 
 -(void) requestNews{
-    NSString *urlString = [NSString stringWithFormat:@"https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=%@", @"144bd4faecc4484797f3065af996d32e"];
+    static NSString *newsApiKey = @"144bd4faecc4484797f3065af996d32e";
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=%@", newsApiKey];
 
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
