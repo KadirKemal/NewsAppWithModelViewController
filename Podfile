@@ -6,7 +6,6 @@ target 'NewsAppWithModelViewController' do
   # use_frameworks!
 
   # Pods for NewsAppWithModelViewController
-  pod 'JSONModel', '~> 1.7'
   pod 'AFNetworking', '~> 3.1'
 
 end
