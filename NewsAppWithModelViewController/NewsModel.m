@@ -11,7 +11,7 @@
 
 @implementation NewsModel
 
--(void) requestNews{
+-(void) requestNews2{
     static NSString *newsApiKey = @"144bd4faecc4484797f3065af996d32e";
     
     NSString *urlString = [NSString stringWithFormat:@"https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=%@", newsApiKey];
@@ -43,6 +43,29 @@
         }
         
     }];
+    
+}
+
+-(void) requestNews{
+    static NSString *newsApiKey = @"144bd4faecc4484797f3065af996d32e";
+    NSString *targetUrl = [NSString stringWithFormat:@"https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=%@", newsApiKey];
+    
+    // making a GET request to /init
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:targetUrl]];
+    
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
+      ^(NSData * _Nullable data,
+        NSURLResponse * _Nullable response,
+        NSError * _Nullable error) {
+          
+          NSError *e;
+          NSDictionary *array = [NSJSONSerialization JSONObjectWithData:data options:nil error:&e];
+          
+          NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+          NSLog(@"Data received: %@", myString);
+      }] resume];
     
 }
 
